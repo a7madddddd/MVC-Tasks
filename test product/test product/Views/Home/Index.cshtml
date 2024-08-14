@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    .card {
+        margin: 20px;
+    }
+
+</style>
+<main>
+
+    @{
+        for (int i = 1; i <= Convert.ToInt32(Session["Count"]); i++)
+        {
+            <div class="card" style="width: 18rem;">
+                <img src="@Session["ProductImage" + i]" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@Session["ProductName" + i]</h5>
+                    <p class="card-text">@Session["ProductPrice" + i]</p>
+
+                    <a href="#" class="btn btn-primary">Pay</a>
+                    <a href="#" class="btn btn-primary">Add to cart</a>
+                </div>
+            </div>
+        }
+
+    }
+
+
+
+
+
+</main>
