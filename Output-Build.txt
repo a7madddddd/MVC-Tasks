@@ -1,0 +1,5 @@
+﻿Build started at 05:12 م...
+1>------ Build started: Project: 24-7 task, Configuration: Debug Any CPU ------
+1>  24-7 task -> C:\Users\Orange\Desktop\MVC-Tasks\24-7 task\24-7 task\bin\24-7 task.dll
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+========== Build completed at 05:12 م and took 00.194 seconds ==========

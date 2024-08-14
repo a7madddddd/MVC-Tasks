@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SchoolSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Assignments">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AssignmentName" Type="nvarchar" MaxLength="25" />
+    <Property Name="AssignmentDescription" Type="varchar" MaxLength="50" />
+    <Property Name="AssignmetDate" Type="date" />
+    <Property Name="AssignmentStatus" Type="nvarchar" MaxLength="15" />
+    <Property Name="CourseID" Type="int" />
+  </EntityType>
+  <EntityType Name="Attendances">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AttendenceDate" Type="date" />
+    <Property Name="AttendenceType" Type="nvarchar" MaxLength="15" />
+    <Property Name="StudentID" Type="int" />
+  </EntityType>
+  <EntityType Name="Calsses">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClassName" Type="nvarchar" MaxLength="15" />
+    <Property Name="ClassCode" Type="int" />
+    <Property Name="RoomNumber" Type="int" />
+    <Property Name="CourseID" Type="int" />
+  </EntityType>
+  <EntityType Name="Calsses_Courses">
+    <Key>
+      <PropertyRef Name="CalssesID" />
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="CalssesID" Type="int" Nullable="false" />
+    <Property Name="CourseID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseName" Type="nvarchar" MaxLength="15" />
+    <Property Name="CourseDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="Resources" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="FamilyInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FatherName" Type="nvarchar" MaxLength="25" />
+    <Property Name="FatherPhone" Type="nvarchar" MaxLength="15" />
+    <Property Name="StdID" Type="int" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="15" />
+    <Property Name="BDate" Type="date" />
+    <Property Name="Adress" Type="nvarchar" MaxLength="15" />
+    <Property Name="Info" Type="nvarchar" MaxLength="15" />
+    <Property Name="CoursesID" Type="int" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Students_Assignment">
+    <Key>
+      <PropertyRef Name="StudentsID" />
+      <PropertyRef Name="AssignmentID" />
+    </Key>
+    <Property Name="StudentsID" Type="int" Nullable="false" />
+    <Property Name="AssignmentID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Students_Courses">
+    <Key>
+      <PropertyRef Name="StudentID" />
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="StudentID" Type="int" Nullable="false" />
+    <Property Name="CourseID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Assignmen__Cours__49C3F6B7">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+    <End Role="Assignments" Type="Self.Assignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Assignments">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Attendanc__Stude__5070F446">
+    <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+    <End Role="Attendances" Type="Self.Attendances" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Attendances">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Calsses__CourseI__4316F928">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+    <End Role="Calsses" Type="Self.Calsses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Calsses">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Calsses_C__Calss__45F365D3">
+    <End Role="Calsses" Type="Self.Calsses" Multiplicity="1" />
+    <End Role="Calsses_Courses" Type="Self.Calsses_Courses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Calsses">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Calsses_Courses">
+        <PropertyRef Name="CalssesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Calsses_C__Cours__46E78A0C">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+    <End Role="Calsses_Courses" Type="Self.Calsses_Courses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Calsses_Courses">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FamilyInf__StdID__3C69FB99">
+    <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+    <End Role="FamilyInfo" Type="Self.FamilyInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FamilyInfo">
+        <PropertyRef Name="StdID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Students___Assig__4D94879B">
+    <End Role="Assignments" Type="Self.Assignments" Multiplicity="1" />
+    <End Role="Students_Assignment" Type="Self.Students_Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Students_Assignment">
+        <PropertyRef Name="AssignmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Students___Cours__403A8C7D">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+    <End Role="Students_Courses" Type="Self.Students_Courses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Students_Courses">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Students___Stude__3F466844">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="Students_Courses" Type="Self.Students_Courses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Students_Courses">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Students___Stude__4CA06362">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="Students_Assignment" Type="Self.Students_Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Students_Assignment">
+        <PropertyRef Name="StudentsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Students__Course__398D8EEE">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Students" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="CoursesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SchoolSystemModelStoreContainer">
+    <EntitySet Name="Assignments" EntityType="Self.Assignments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Attendances" EntityType="Self.Attendances" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Calsses" EntityType="Self.Calsses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Calsses_Courses" EntityType="Self.Calsses_Courses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FamilyInfo" EntityType="Self.FamilyInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Students_Assignment" EntityType="Self.Students_Assignment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Students_Courses" EntityType="Self.Students_Courses" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Assignmen__Cours__49C3F6B7" Association="Self.FK__Assignmen__Cours__49C3F6B7">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Assignments" EntitySet="Assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Attendanc__Stude__5070F446" Association="Self.FK__Attendanc__Stude__5070F446">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Attendances" EntitySet="Attendances" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Calsses__CourseI__4316F928" Association="Self.FK__Calsses__CourseI__4316F928">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Calsses" EntitySet="Calsses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Calsses_C__Calss__45F365D3" Association="Self.FK__Calsses_C__Calss__45F365D3">
+      <End Role="Calsses" EntitySet="Calsses" />
+      <End Role="Calsses_Courses" EntitySet="Calsses_Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Calsses_C__Cours__46E78A0C" Association="Self.FK__Calsses_C__Cours__46E78A0C">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Calsses_Courses" EntitySet="Calsses_Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FamilyInf__StdID__3C69FB99" Association="Self.FK__FamilyInf__StdID__3C69FB99">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="FamilyInfo" EntitySet="FamilyInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Students___Assig__4D94879B" Association="Self.FK__Students___Assig__4D94879B">
+      <End Role="Assignments" EntitySet="Assignments" />
+      <End Role="Students_Assignment" EntitySet="Students_Assignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Students___Cours__403A8C7D" Association="Self.FK__Students___Cours__403A8C7D">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Students_Courses" EntitySet="Students_Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Students___Stude__3F466844" Association="Self.FK__Students___Stude__3F466844">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Students_Courses" EntitySet="Students_Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Students___Stude__4CA06362" Association="Self.FK__Students___Stude__4CA06362">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Students_Assignment" EntitySet="Students_Assignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Students__Course__398D8EEE" Association="Self.FK__Students__Course__398D8EEE">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

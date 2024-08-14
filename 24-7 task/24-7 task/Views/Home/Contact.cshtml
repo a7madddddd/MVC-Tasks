@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title.</h2>
+
+    @using(Html.BeginForm("contact", "Home", FormMethod.Post)) { 
+        <div class="form-group">
+            <label for="Name">Name:</label>
+            <input type="text" name="Name" id="Name" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="Email">Email:</label>
+            <input type="email"  name="Email" id="Email" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="subject">subject:</label>
+            <textarea id="subject" name="subject" class="form-control" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-info">Submit</button>
+    }
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>@ViewBag.Name</th>
+                <th>@ViewBag.Email</th>
+                <th>@ViewBag.subject</th>
+            </tr>
+        </thead>
+    </table>
+
+</main>

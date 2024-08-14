@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SchoolSystemModelStoreContainer" CdmEntityContainer="SchoolSystemEntities">
+    <EntitySetMapping Name="Assignments">
+      <EntityTypeMapping TypeName="SchoolSystemModel.Assignments">
+        <MappingFragment StoreEntitySet="Assignments">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AssignmentName" ColumnName="AssignmentName" />
+          <ScalarProperty Name="AssignmentDescription" ColumnName="AssignmentDescription" />
+          <ScalarProperty Name="AssignmetDate" ColumnName="AssignmetDate" />
+          <ScalarProperty Name="AssignmentStatus" ColumnName="AssignmentStatus" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Attendances">
+      <EntityTypeMapping TypeName="SchoolSystemModel.Attendances">
+        <MappingFragment StoreEntitySet="Attendances">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AttendenceDate" ColumnName="AttendenceDate" />
+          <ScalarProperty Name="AttendenceType" ColumnName="AttendenceType" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Calsses">
+      <EntityTypeMapping TypeName="SchoolSystemModel.Calsses">
+        <MappingFragment StoreEntitySet="Calsses">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="ClassCode" ColumnName="ClassCode" />
+          <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="SchoolSystemModel.Courses">
+        <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="CourseDescription" ColumnName="CourseDescription" />
+          <ScalarProperty Name="Resources" ColumnName="Resources" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FamilyInfo">
+      <EntityTypeMapping TypeName="SchoolSystemModel.FamilyInfo">
+        <MappingFragment StoreEntitySet="FamilyInfo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+          <ScalarProperty Name="FatherPhone" ColumnName="FatherPhone" />
+          <ScalarProperty Name="StdID" ColumnName="StdID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="SchoolSystemModel.Students">
+        <MappingFragment StoreEntitySet="Students">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BDate" ColumnName="BDate" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Info" ColumnName="Info" />
+          <ScalarProperty Name="CoursesID" ColumnName="CoursesID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Calsses_Courses" TypeName="SchoolSystemModel.Calsses_Courses" StoreEntitySet="Calsses_Courses">
+      <EndProperty Name="Calsses">
+        <ScalarProperty Name="ID" ColumnName="CalssesID" />
+      </EndProperty>
+      <EndProperty Name="Courses">
+        <ScalarProperty Name="ID" ColumnName="CourseID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Students_Assignment" TypeName="SchoolSystemModel.Students_Assignment" StoreEntitySet="Students_Assignment">
+      <EndProperty Name="Assignments">
+        <ScalarProperty Name="ID" ColumnName="AssignmentID" />
+      </EndProperty>
+      <EndProperty Name="Students">
+        <ScalarProperty Name="ID" ColumnName="StudentsID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Students_Courses" TypeName="SchoolSystemModel.Students_Courses" StoreEntitySet="Students_Courses">
+      <EndProperty Name="Courses">
+        <ScalarProperty Name="ID" ColumnName="CourseID" />
+      </EndProperty>
+      <EndProperty Name="Students">
+        <ScalarProperty Name="ID" ColumnName="StudentID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
